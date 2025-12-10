@@ -182,7 +182,7 @@ This is an independent implementation based on the research paper:
 - Institution: University of Delaware
 - arXiv: [2510.11448](https://arxiv.org/abs/2510.11448)
 
-See [ACKNOWLEDGMENTS.md](ros2_shm_vision/ACKNOWLEDGMENTS.md) for full citation and disclaimer.
+See [ACKNOWLEDGMENTS.md](ACKNOWLEDGMENTS.md) for full citation and disclaimer.
 
 ---
 
