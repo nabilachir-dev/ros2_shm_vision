@@ -2,7 +2,7 @@
 
 High-Bandwidth Video Transport for ROS 2
 
-> **Note:** This is an independent implementation by Nabil Achir based on published research. It is NOT officially affiliated with or endorsed by the original paper authors (He & Shi, University of Delaware). See [ACKNOWLEDGMENTS.md](ros2_shm_vision/ACKNOWLEDGMENTS.md) for full details.
+> **Note:** This is an independent implementation by Nabil Achir based on published research. It is NOT officially affiliated with or endorsed by the original paper authors (He & Shi, University of Delaware). See [ACKNOWLEDGMENTS.md](ACKNOWLEDGMENTS.md) for full details.
 
 ---
 
