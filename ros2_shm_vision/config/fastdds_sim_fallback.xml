@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Configurazione FastDDS per fallback SIM -> Zero-Copy -> Standard
+  
+  Questa configurazione usa AUTOMATIC per data_sharing, permettendo
+  a FastDDS di decidere automaticamente se usare shared memory.
+  
+  Se SIM fallisce, il sistema passa a Zero-Copy DDS.
+  Se Zero-Copy fallisce, passa a Standard.
+-->
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
+        <!-- Profilo publisher di default -->
+        <publisher profile_name="default publisher profile" is_default_profile="true">
+            <qos>
+                <publishMode>
+                    <kind>SYNCHRONOUS</kind>
+                </publishMode>
+                <data_sharing>
+                    <kind>AUTOMATIC</kind>
+                </data_sharing>
+            </qos>
+            <historyMemoryPolicy>PREALLOCATED_WITH_REALLOC</historyMemoryPolicy>
+        </publisher>
+
+        <!-- Profilo subscriber di default -->
+        <subscriber profile_name="default subscriber profile" is_default_profile="true">
+            <qos>
+                <data_sharing>
+                    <kind>AUTOMATIC</kind>
+                </data_sharing>
+            </qos>
+            <historyMemoryPolicy>PREALLOCATED_WITH_REALLOC</historyMemoryPolicy>
+        </subscriber>
+
+        <!-- Profilo specifico per topic SIM/ZeroCopy -->
+        <publisher profile_name="sim_image_1080p">
+            <qos>
+                <publishMode>
+                    <kind>SYNCHRONOUS</kind>
+                </publishMode>
+                <data_sharing>
+                    <kind>AUTOMATIC</kind>
+                </data_sharing>
+            </qos>
+            <historyMemoryPolicy>PREALLOCATED_WITH_REALLOC</historyMemoryPolicy>
+        </publisher>
+
+        <subscriber profile_name="sim_image_1080p">
+            <qos>
+                <data_sharing>
+                    <kind>AUTOMATIC</kind>
+                </data_sharing>
+            </qos>
+            <historyMemoryPolicy>PREALLOCATED_WITH_REALLOC</historyMemoryPolicy>
+        </subscriber>
+    </profiles>
+</dds>

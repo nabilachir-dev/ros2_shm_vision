@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Configurazione FastDDS per Zero-Copy Immagini 1080p
+  FastDDS Configuration for 1080p Image Zero-Copy
+  
+  Abilita data sharing per trasferimento ~6 MB per frame a 30 fps.
+-->
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
+        <!-- Profilo publisher di default -->
+        <publisher profile_name="default publisher profile" is_default_profile="true">
+            <qos>
+                <publishMode>
+                    <kind>SYNCHRONOUS</kind>
+                </publishMode>
+                <data_sharing>
+                <kind>AUTOMATIC</kind>
+                </data_sharing>
+            </qos>
+            <historyMemoryPolicy>PREALLOCATED_WITH_REALLOC</historyMemoryPolicy>
+        </publisher>
+
+        <!-- Profilo subscriber di default -->
+        <subscriber profile_name="default subscriber profile" is_default_profile="true">
+            <qos>
+                <data_sharing>
+                <kind>AUTOMATIC</kind>
+                </data_sharing>
+            </qos>
+            <historyMemoryPolicy>PREALLOCATED_WITH_REALLOC</historyMemoryPolicy>
+        </subscriber>
+
+        <!-- Profilo specifico per topic image_1080p -->
+        <publisher profile_name="image_1080p">
+            <qos>
+                <publishMode>
+                    <kind>SYNCHRONOUS</kind>
+                </publishMode>
+                <data_sharing>
+                <kind>AUTOMATIC</kind>
+                </data_sharing>
+            </qos>
+            <historyMemoryPolicy>PREALLOCATED_WITH_REALLOC</historyMemoryPolicy>
+        </publisher>
+
+        <subscriber profile_name="image_1080p">
+            <qos>
+                <data_sharing>
+                <kind>AUTOMATIC</kind>
+                </data_sharing>
+            </qos>
+            <historyMemoryPolicy>PREALLOCATED_WITH_REALLOC</historyMemoryPolicy>
+        </subscriber>
+    </profiles>
+</dds>
