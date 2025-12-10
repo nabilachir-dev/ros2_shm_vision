@@ -10,7 +10,7 @@ This package provides four transport architectures:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                        Transport Latency Comparison                      │
+│                        Transport Latency Comparison                     │
 ├──────────────────┬──────────────┬──────────────────┬────────────────────┤
 │     Standard     │    Loaned    │   SIM Fallback   │     SIM Pure       │
 │     7.19 ms      │    3.10 ms   │     1.03 ms      │     0.68 ms        │
@@ -29,8 +29,8 @@ This package provides four transport architectures:
 │   Camera   │───>│ ROS Message │───>│ Serialization │───>│    DDS     │
 │   Driver   │    │  Conversion │    │   (CDR)       │    │  Transport │
 └────────────┘    └─────────────┘    └───────────────┘    └─────┬──────┘
-                                                                 │
-                                                                 v
+                                                                │
+                                                                v
 ┌────────────┐    ┌─────────────┐    ┌───────────────┐    ┌────────────┐
 │Application │<───│ ROS Message │<───│Deserialization│<───│    DDS     │
 │            │    │  Conversion │    │               │    │   Receive  │
@@ -63,16 +63,16 @@ Latency: ~3 ms
 ```
 ┌────────────┐         ┌──────────────────────────────────────────────────┐
 │   Camera   │────────>│            POSIX Shared Memory                   │
-│   Driver   │  write  │  ┌────────┐  ┌─────────┐  ┌─────────┐           │
-└────────────┘         │  │ Header │  │Buffer 0 │  │Buffer 1 │           │
+│   Driver   │  write  │  ┌────────┐  ┌─────────┐  ┌─────────┐            │
+└────────────┘         │  │ Header │  │Buffer 0 │  │Buffer 1 │            │
                        │  │front_idx│  │ (6 MB)  │  │ (6 MB)  │           │
-                       │  └────────┘  └─────────┘  └─────────┘           │
+                       │  └────────┘  └─────────┘  └─────────┘            │
                        └───────────────────────────┬──────────────────────┘
                                                    │ direct read
                                                    v
                        ┌────────────────────────────────────────────────┐
-                       │                 Application                     │
-                       │     (reads from active buffer via front_idx)    │
+                       │                 Application                    │
+                       │     (reads from active buffer via front_idx)   │
                        └────────────────────────────────────────────────┘
 
 Copies: 1 (into SHM, reader copies out)
@@ -85,17 +85,17 @@ Latency: ~0.7 ms
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│                         SIM Fallback Chain                              │
-│                                                                         │
+│                         SIM Fallback Chain                             │
+│                                                                        │
 │   ┌─────────┐         ┌─────────────┐         ┌──────────────┐         │
 │   │   SIM   │──fail──>│  Zero-Copy  │──fail──>│   Standard   │         │
 │   │ 0.7 ms  │         │   3.1 ms    │         │    7.2 ms    │         │
 │   └─────────┘         └─────────────┘         └──────────────┘         │
-│       │                     │                        │                  │
-│       │                     │                        │                  │
-│   Best perf            Good perf              Always works              │
-│   SHM required         SHM required           Network OK                │
-│                                                                         │
+│       │                     │                        │                 │
+│       │                     │                        │                 │
+│   Best perf            Good perf              Always works             │
+│   SHM required         SHM required           Network OK               │
+│                                                                        │
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
