@@ -65,7 +65,7 @@ Latency: ~3 ms
 │   Camera   │────────>│            POSIX Shared Memory                   │
 │   Driver   │  write  │  ┌────────┐  ┌─────────┐  ┌─────────┐            │
 └────────────┘         │  │ Header │  │Buffer 0 │  │Buffer 1 │            │
-                       │  │front_idx│  │ (6 MB)  │  │ (6 MB)  │           │
+                       │  │front_idx│ │ (6 MB)  │  │ (6 MB)  │            │
                        │  └────────┘  └─────────┘  └─────────┘            │
                        └───────────────────────────┬──────────────────────┘
                                                    │ direct read
